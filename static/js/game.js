@@ -1,7 +1,21 @@
-window.player = new Player('Luiz', 1, 100, 100, 100, 100, 0, 100, 10, 1);
-window.enemy = new Enemy('Goblin', 1, 100, 100, 10, 1);
+window.player = new Player('Luiz', 1, 100, 100, 100, 100, 0, 100, 10, 1, 6);
+window.enemy = getCurrentMonster();
 
-setInterval(() => {
-    window.player.draw();
-    window.enemy.draw()
-}, 1000 / 60);
+const gameLoop = () => {
+    window.player.update();
+    window.enemy.update();
+
+    if (window.player.hp <= 0 || window.enemy.hp <= 0) {
+        window.enemy.stopEvents();
+    }
+    if (window.enemy.hp <= 0) {
+        window.player.exp += 10;
+        window.player.checkLevelUp();
+        currentMonster++;
+        window.enemy = getCurrentMonster();
+    }
+
+    requestAnimationFrame(gameLoop);
+}
+
+requestAnimationFrame(gameLoop);

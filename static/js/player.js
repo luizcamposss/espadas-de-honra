@@ -1,5 +1,5 @@
 class Player {
-    constructor(name, level, hp, hpMax, mana, manaMax, exp, expMax, damage, delayAttack) {
+    constructor(name, level, hp, hpMax, mana, manaMax, exp, expMax, damage, delayAttack, speed) {
         this.name = name;
         this.level = level;
         this.hp = hp;
@@ -11,17 +11,65 @@ class Player {
         this.damage = damage;
         this.delayAttack = delayAttack;
         this.isAttacking = false;
+        this.x = 300;
+        this.y = 225;
+        this.width = 200;
+        this.step = speed;
+        this.keyboard = { left: false, right: false, jump: false }
+        this.isJumping = false;
+        this.jumpMaxHeight = 400;
+        this.gravityForce = 10;
+
+        this.initEvents();
+    }
+
+    update() {
+        this.movement();
+        this.draw();
+    }
+
+    movement() {
+        if (this.keyboard.left) {
+            this.x -= this.step;
+        }
+        if (this.keyboard.right) {
+            this.x += this.step;
+        }
+        if (this.keyboard.jump) {
+            this.jump();
+        }
+        this.jumpGravity();
+    }
+
+    jump() {
+        if(this.isJumping) return;
+        this.isJumping = true;
+    }
+
+    jumpGravity() {
+        if (this.isJumping) {
+            if (this.y <= this.jumpMaxHeight && !this.jumpFall) {
+                this.y += this.gravityForce;
+            }
+            else {
+                this.jumpFall = true;
+                if (this.y >= 225) {
+                    this.y -= this.gravityForce;
+                }
+                else {
+                    this.isJumping = false;
+                }
+            }
+        }
     }
 
     attack(entity) {
         if (this.isAttacking) return;
         this.isAttacking = true;
         entity.hp -= this.damage;
-        console.log('enemy hp', entity.hp)
-        setTimeout(
-            () => {
-                this.isAttacking = false;
-            }, this.delayAttack);
+        setTimeout(() => {
+            this.isAttacking = false;
+        }, this.delayAttack * 1000);
     }
 
     draw() {
@@ -36,5 +84,54 @@ class Player {
         document.querySelector('.user-panel .stats-bar.mana').innerText = `${this.mana}/${this.manaMax}`;
         // exp
         document.querySelector('.user-panel .stats-bar.exp').innerText = `${this.exp}/${this.expMax}`;
+
+        //player postion
+
+        document.querySelector('.player').style.left = `${this.x}px`;
+        document.querySelector('.player').style.bottom = `${this.y}px`;
+    }
+
+    checkLevelUp() {
+        if (this.exp >= this.expMax) {
+            this.level++;
+            this.exp = 0;
+            this.expMax = this.expMax * 2;
+        }
+    }
+
+    initEvents() {
+        //attack event
+        document.querySelector('.entity.enemy').addEventListener('mousedown', (e) => {
+            if (calculateDistance(this.x, this.y, window.enemy.x, window.enemy.y) <= 200) {
+                window.player.attack(window.enemy);
+            }
+        });
+
+        //movement event
+
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.toLocaleLowerCase()
+            if (key === 'a') {
+                this.keyboard.left = true;
+            }
+            if (key === 'd') {
+                this.keyboard.right = true;
+            }
+            if (key === ' ') {
+                this.keyboard.jump = true;
+            }
+        });
+        document.addEventListener('keyup', (e) => {
+            const key = e.key.toLocaleLowerCase()
+            if (key === 'a') {
+                this.keyboard.left = false;
+            }
+            if (key === 'd') {
+                this.keyboard.right = false;
+            }
+            if (key === 'space') {
+                this.keyboard.jump = true;
+            }
+        });
     }
 }
