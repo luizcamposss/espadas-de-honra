@@ -1,0 +1,107 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/background.png);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.center-options {
+    width: 40vw;
+    /* border: 1px solid red; */
+    height: 70vh;
+}
+
+.center-logo {
+    width: 40vw;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+
+#logo-game {
+    width: 25vw;
+}
+
+#logo-game:hover {
+    z-index: 999;
+    transform: scale(1.1);
+    transition: 0.3s all;
+}
+
+.options-game {
+    width: 40vw;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid red; */
+    justify-content: center;
+}
+
+.btn-game {
+    width: 257px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: none;
+}
+
+.btn-game-a {
+    width: 320px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-game-a:hover {
+    z-index: 999;
+    transform: scale(1.1);
+    transition: 0.3s all;
+}
+
+.btn-game-icon {
+    width: 260px;
+    height: auto;
+}
+
+.icons {
+    width: 40vw;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid red; */
+    gap: 10px;
+}
+
+.network {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons-logo {
+    width: 110px;
+    height: 110px;
+}
+
+.icons-logo:hover {
+    z-index: 999;
+    transform: scale(1.1);
+    transition: 0.3s all;
+}

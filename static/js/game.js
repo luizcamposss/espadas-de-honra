@@ -1,7 +1,7 @@
 document.addEventListener('contextmenu', event => event.preventDefault());
 
 window.player = new Player({
-    name: 'Luiz', 
+    name: 'Half', 
     level: 1, 
     hp: 100, 
     hpMax: 100, 

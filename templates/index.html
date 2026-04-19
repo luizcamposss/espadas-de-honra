@@ -25,16 +25,6 @@
         {% include 'game/game.html' %}
     </div>
 
-    <div class="ui-container-footer">
-         <!-- Chat -->
-         {% include 'ui/chat.html' %}
-
-         <!-- Itens Shortcut -->
-         {% include 'ui/itens_shortcut.html' %}
- 
-         <!-- Menu (inventario, market, map, etc) -->
-         {% include 'ui/menu.html' %}
-    </div>
     <script src="https://code.createjs.com/1.0.0/soundjs.min.js"></script>
     <script src="{{ url_for('static', path='js/utils.js') }}"></script>
     <script src="{{ url_for('static', path='js/maps.js') }}"></script>
