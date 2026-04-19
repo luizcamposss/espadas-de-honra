@@ -7,23 +7,40 @@
     <title>Espadas de Honra - RPG</title>
     <link rel="shortcut icon" href="/static/img/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="../static/css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
     <div class="home-container">
+        <div id="popup-start" class="popup-overlay">
+            <div class="popup-box">
+                <button id="btn-start"><img id="btn-start-icon" src="../static/img/button-ok.png" alt=""></button>
+            </div>
+        </div>
+
+        <audio id="home-song" autoplay muted loop>
+            <source src="../static/sounds/home/home-song.wav" type="audio/wav">
+        </audio>
         <div class="center-options">
             <div class="center-logo">
                 <img src="../static/img/espadas-de-honra-logo.png" id="logo-game" alt="">
             </div>
             <div class="options-game">
-                <button class="btn-game"><a href="{{url_for('index_page')}}" class="btn-game-a"><img src="../static/img/button-start.png" class="btn-game-icon" alt=""></a></button>
+                <button class="btn-game"><a href="{{url_for('index_page')}}" class="btn-game-a"><img
+                            src="../static/img/button-start.png" class="btn-game-icon" alt=""></a></button>
             </div>
             <div class="icons">
-                <a href="https://www.instagram.com/luizcamposs_/" class="network"><img class="icons-logo" src="../static/img/icon-instagram.png" alt=""></a>
-                <a href="https://github.com/luizcamposss/espadas-de-honra" class="network"><img class="icons-logo" src="../static/img/icon-github.png" alt=""></a>
-                <a href="https://www.linkedin.com/in/luizcamposs/" class="network"><img class="icons-logo" src="../static/img/icon-linkedin.png" alt=""></a>
+                <a href="https://www.instagram.com/luizcamposs_/" class="network"><img class="icons-logo"
+                        src="../static/img/icon-instagram.png" alt=""></a>
+                <a href="https://github.com/luizcamposss/espadas-de-honra" class="network"><img class="icons-logo"
+                        src="../static/img/icon-github.png" alt=""></a>
+                <a href="https://www.linkedin.com/in/luizcamposs/" class="network"><img class="icons-logo"
+                        src="../static/img/icon-linkedin.png" alt=""></a>
             </div>
         </div>
     </div>
 </body>
+<script src="../static/js/home/home.js"></script>
+
 </html>
